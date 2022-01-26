@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2018",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "ES2018"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,14 +14,18 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["@types/node", "@types/chai", "@types/mocha", "@typechain/truffle-v5"],
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": [
-    "src"
-  ]
+//  "include": [
+//    "src", "migrations", "test"
+//  ],
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "build", "cache", "artifacts"]
 }
