@@ -26,6 +26,6 @@
 //  "include": [
 //    "src", "migrations", "test"
 //  ],
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "scripts/seed-exchange.js"],
   "exclude": ["node_modules", "build", "cache", "artifacts"]
 }
