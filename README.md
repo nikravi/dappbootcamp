@@ -7,3 +7,5 @@ Commands:
 `npm test-sol` — compiles smart contracts, generates ts definitions, runs tuffle tests
 
 `truffle migrate --reset` — migrates the smart contracts, removing previous versions 
+
+`truffle exec scripts/seed-exchange.js` - provision initial orders/ accounts
