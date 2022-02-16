@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 import { Web3ReactContextInterface } from "@web3-react/core/dist/types";
 import { Web3Provider } from "@ethersproject/providers";
 import { Event } from "@ethersproject/contracts"
-import { formatUnits, Result } from 'ethers/lib/utils';
+import { formatUnits } from 'ethers/lib/utils';
 import { ETHER_ADDRESS } from '../utils';
 import { format, fromUnixTime } from 'date-fns';
 import { BEXOrder } from './models';
@@ -68,8 +68,9 @@ export async function loadExchange(w3: Web3ReactContextInterface<Web3Provider>, 
 
 
 const decorateOrder = (order: Event["args"]): BEXOrder => {
-    const isBuyOrder = order?.amountGive === ETHER_ADDRESS
+    const isBuyOrder = order?.tokenGive === ETHER_ADDRESS
     let tokenAmount, etherAmount;
+    debugger
     if (isBuyOrder) {
         etherAmount = order?.amountGive;
         tokenAmount = order?.amountGet;
@@ -94,7 +95,10 @@ const decorateOrder = (order: Event["args"]): BEXOrder => {
 }
 
 const decorateFilledOrder = (order: BEXOrder, previousOrder: BEXOrder): BEXOrder => {
-    let isPriceHigher = previousOrder?.tokenPrice <= order.tokenPrice;
+    let isPriceHigher = (previousOrder?.tokenPrice || 0 ) <= order.tokenPrice;
+
+    console.log(previousOrder?.tokenPrice, order.tokenPrice, isPriceHigher);
+    
 
     return {...order,
         isPriceHigher
